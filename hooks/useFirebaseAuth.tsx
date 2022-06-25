@@ -13,6 +13,22 @@ const useFirebaseAuth = () => {
       const signInResult = await signInWithPopup(FirebaseClient.getInstance().Auth, provider);
       if (signInResult.user) {
         console.info(signInResult.user);
+        const response = await fetch('/api/members.add', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            uid: signInResult.user.uid,
+            email: signInResult.user.email,
+            displayName: signInResult.user.displayName,
+            photoURL: signInResult.user.photoURL,
+          }),
+        });
+        console.info({
+          status: response.status,
+          result: response.json(),
+        });
       }
     } catch (e) {
       console.error(e);
