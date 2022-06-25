@@ -106,5 +106,5 @@ module.exports = {
       },
     ],
   },
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', 'next.config.js'],
 };
